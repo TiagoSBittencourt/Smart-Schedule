@@ -9,6 +9,9 @@ import { generateSchedule } from '../api/scheduleApi';
 // Icons
 import { FaTrash } from 'react-icons/fa';
 
+// Navigation
+import { useNavigate } from 'react-router-dom';
+
 // --- Consts to generate the schedule ---
 const DAYS_OF_WEEK = [
   { key: 'segunda', label: 'Segunda' },
@@ -38,6 +41,9 @@ const SetupPage: React.FC = () => {
   // States for feedback to user
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Navigation
+  const navigate = useNavigate();
 
   // --- Method to manipulate Classes ---
   const handleAddSubject = (e: React.FormEvent) => {
@@ -99,6 +105,8 @@ const SetupPage: React.FC = () => {
       
       const schedule: GeneratedSchedule = await generateSchedule(payload);
       console.log('Cronograma Gerado:', schedule);
+
+      navigate("/cronograma", { state: { schedule }})
       
       // PROXIMO PASSO: Navegar para a pagina de visualizacao com os dados do 'schedule'    TODO: !!!!!
       alert('Cronograma gerado com sucesso! Veja o console.');
