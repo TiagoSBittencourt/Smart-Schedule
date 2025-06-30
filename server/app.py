@@ -37,7 +37,10 @@ def calculate_schedule(data):
         hours_for_subject = round(proportion * total_available_hours)
 
         for _ in range(hours_for_subject):
-            study_blocks.append(subject['name'])
+            study_blocks.append({
+                "name": subject['name'],
+                "color": subject.get("color", "#9d98df")
+            })
 
     while len(study_blocks) < total_available_hours:
         study_blocks.append(max(subject, key=lambda s: s['weight'])['name'])

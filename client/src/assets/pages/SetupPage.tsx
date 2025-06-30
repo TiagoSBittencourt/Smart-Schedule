@@ -37,6 +37,7 @@ const SetupPage: React.FC = () => {
   const [newSubjectName, setNewSubjectName] = useState('');
   const [newSubjectWeight, setNewSubjectWeight] = useState(3);
   const [availability, setAvailability] = useState<Availability>({});
+  const [newSubjectColor, setNewSubjectColor] = useState('#4298e1')
   
   // States for feedback to user
   const [loading, setLoading] = useState(false);
@@ -56,12 +57,14 @@ const SetupPage: React.FC = () => {
       id: crypto.randomUUID(), 
       name: newSubjectName.trim(),
       weight: newSubjectWeight,
+      color: newSubjectColor,
     };
     setSubjects([...subjects, newSubject]);
 
     // Clean Forms Fields
     setNewSubjectName('');
     setNewSubjectWeight(3);
+    setNewSubjectColor('#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0')); // Set a new random color
   };
 
   const handleRemoveSubject = (idToRemove: string) => {
@@ -129,7 +132,7 @@ const SetupPage: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4 text-gray-700">1. Matérias e Prioridades</h2>
         
         {/* Classes Form */}
-        <form onSubmit={handleAddSubject} className="flex flex-col md:flex-row gap-4 mb-6">
+        <form onSubmit={handleAddSubject} className="flex flex-col md:flex-row gap-4 mb-6 items-center">
           <input
             type="text"
             value={newSubjectName}
@@ -140,7 +143,7 @@ const SetupPage: React.FC = () => {
           <select
             value={newSubjectWeight}
             onChange={(e) => setNewSubjectWeight(Number(e.target.value))}
-            className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white"
+            className="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white md:w-52"
           >
             <option value={1}>Prioridade 1 (Baixa)</option>
             <option value={2}>Prioridade 2</option>
@@ -148,7 +151,14 @@ const SetupPage: React.FC = () => {
             <option value={4}>Prioridade 4</option>
             <option value={5}>Prioridade 5 (Alta)</option>
           </select>
-          <button type="submit" className="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition-colors">
+          <input
+            type="color"
+            value={newSubjectColor}
+            onChange={(e) => setNewSubjectColor(e.target.value)}
+            className="w-full md:w-auto h-12 p-1 border border-gray-300 rounded-lg cursor-pointer"
+            title="Escolha uma cor para a matéria"
+          />
+          <button type="submit" className="bg-green-500 text-white font-bold p-3 rounded-lg hover:bg-green-600 transition-colors h-12">
             Adicionar
           </button>
         </form>
@@ -157,14 +167,13 @@ const SetupPage: React.FC = () => {
         <div className="space-y-3">
           {subjects.map(subject => (
             <div key={subject.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-              <span className="font-medium text-gray-700">{subject.name}</span>
+              <div className="flex items-center gap-3">
+                <div className="w-5 h-5 rounded-full" style={{ backgroundColor: subject.color }}></div>
+                <span className="font-medium text-gray-700">{subject.name}</span>
+              </div>
               <div className="flex items-center gap-4">
                 <span className="text-sm text-gray-500">Peso: {subject.weight}</span>
-                <button 
-                  onClick={() => handleRemoveSubject(subject.id)} 
-                  className="text-red-500 hover:text-red-700 transition-colors"
-                  aria-label={`Remover ${subject.name}`}
-                >
+                <button onClick={() => handleRemoveSubject(subject.id)} className="text-red-500 hover:text-red-700">
                   <FaTrash />
                 </button>
               </div>

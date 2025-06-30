@@ -2,6 +2,12 @@ export interface Subject {
   id: string;
   name: string;
   weight: number;
+  color: string;
+}
+
+export interface ScheduleBlock {
+  name: string;
+  color: string;
 }
 
 export interface Availability {
@@ -10,6 +16,6 @@ export interface Availability {
 
 export interface GeneratedSchedule {
   [day: string]: {
-    [timeSlot: string]: string; // ex: { "09:00-10:00": "Math" }
+    [timeSlot: string]: ScheduleBlock; // ex: { "09:00-10:00": "Math" }
   };
 }
