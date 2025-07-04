@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: schedule-proj-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/__pycache__
+    env_file:
+      - ./server/.env
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: schedule-proj-client
+    ports: 
+      - "3000:5173"
+    volumes:
+      - ./client/src:/app/src
+      - ./client/public:/app/public
+      - /app/node_modules
+    environment:
+      - WATCHPACKE_POLLING=true
+    depends_on: 
+      - backend
+
+networks:
+  default:
+    name: schedule-proj-network
+    
