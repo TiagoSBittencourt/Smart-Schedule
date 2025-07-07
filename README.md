@@ -55,12 +55,13 @@ smart-schedule/
 ### Frontend:  
 
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  
-- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css&logoColor=white)  
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  
 - ![TypeScript](https://img.shields.io/badge/TypeScript-1052B6?style=for-the-badge&logo=typescript&logoColor=white)  
-- React.ts
-- Vite
-- ESLint
-- Other Dependecys
+- ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)  
+- React.ts  
+- Vite  
+- ESLint  
+- Other dependencies
 
 ### Backend:
 - ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)  
