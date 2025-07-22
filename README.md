@@ -14,6 +14,10 @@ This project is a full-stack web application that allows users to input their su
 
 📚 Developed during the **Alura DevOps Immersion** program.
 
+<p align="center">
+  <img src="assets-readme/CertificadoImersaoDevOps.png" alt="Alura DevOps Immersion Certificate" width="700"/>
+</p>
+
 ## 🚀 Features
 🔹 **Subject Management** – Add, edit, or remove study subjects with full CRUD support.  
 🔹 **Priority Weighting** – Assign weights to subjects to influence time distribution.  
